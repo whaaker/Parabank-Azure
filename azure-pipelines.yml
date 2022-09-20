@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: curl -I --ipv4 http://localhost
+- script: curl -I --ipv4 "https://localhost"
   displayName: 'Run Tests against localhost'
 
 - script: |
