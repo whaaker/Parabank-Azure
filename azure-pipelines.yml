@@ -11,8 +11,8 @@ pool:
 
 steps:
 - script: |
-    # Ping LS 
-    curl -I --ipv4 "http://34.212.121.186:8080/"
+    # Healthcheck LS
+    curl -I $(license.server.url)
 
     # Deloy Docker Virt Server
     docker run -d \
