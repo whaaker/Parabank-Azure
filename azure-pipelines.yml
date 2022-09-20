@@ -46,10 +46,12 @@ steps:
     -p 9618:9618 \
     --env ACCEPT_EULA=true \
     --name soavirt-server parasoft/soavirt-server
+    
+    sleep 30s
 
     # Healthcheck Parasoft SOAVirt Server
     echo "\n~~~\nPing SOAVirt\n"
-    curl -I --ipv4 http://localhost:9080
+    curl -I http://localhost:9080
 
   displayName: 'Run Tests against localhost'
 
