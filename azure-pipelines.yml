@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: curl -v http://localhost:80
+- script: curl -v http://localhost
   displayName: 'Run Tests against localhost'
 
 - script: |
