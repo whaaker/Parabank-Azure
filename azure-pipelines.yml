@@ -11,10 +11,17 @@ pool:
 
 steps:
 - script: |
+    # Set up
+    echo "Setting Up"
+    mkdir temp
+    echo ${PWD}
+
     # Healthcheck LS
+    echo "health check LS"
     curl -I $(license.server.url)
 
     # Deloy Docker Virt Server
+    echo "Deploy Parasoft SOAVirt Server"
     docker run -d \
     -p 9080:9080 \
     -p 9617:9617 \
