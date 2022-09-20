@@ -10,8 +10,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: curl -v http://localhost:80
+  displayName: 'Run Tests against localhost'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
