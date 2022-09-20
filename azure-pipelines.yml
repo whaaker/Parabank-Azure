@@ -8,9 +8,11 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-
 steps:
-- script: curl -I --ipv4 "https://localhost"
+- script: |
+    echo Deploy Docker Container
+steps:
+- script: curl -I --ipv4 "http://34.212.121.186:8080/"
   displayName: 'Run Tests against localhost'
 
 - script: |
