@@ -12,22 +12,44 @@ pool:
 steps:
 - script: |
     # Set up
-    echo "Setting Up"
+    echo "\n~~~\nSetting Up\n"
     mkdir temp
     echo ${PWD}
+    ls -la ${PWD}
 
     # Healthcheck LS
-    echo "health check LS"
+    echo "\n~~\nHealth check LS\n"
     curl -I $(license.server.url)
 
+    # Set Up and write .properties file
+    echo  -e "\n~~~\nSetting up and creating config.properties file.\n"
+    echo $"
+    license.network.auth.enabled=true  
+    license.network.password=$(license.server.password)
+    license.network.url=$(license.server.url)
+    license.network.use.specified.server=true
+    license.network.user=admin
+    soatest.license.network.edition=automation_edition
+    soatest.license.use_network=true
+    virtualize.license.network.edition=performance_server_edition
+    virtualize.license.use_network=true" >> temp/config.properties
+    echo -e "\nDebug -- Verify workspace contents.\n"
+    ls -R
+    echo -e "\nDebug -- Verify config.properties file contents."
+    cat temp/config.properties
+
     # Deloy Docker Virt Server
-    echo "Deploy Parasoft SOAVirt Server"
+    echo "\n~~~\nDeploy Parasoft SOAVirt Server\n"
     docker run -d \
     -p 9080:9080 \
     -p 9617:9617 \
     -p 9618:9618 \
     --env ACCEPT_EULA=true \
     --name soavirt-server parasoft/soavirt-server
+
+    # Healthcheck Parasoft SOAVirt Server
+    echo "\n~~~\nPing SOAVirt\n"
+    curl -I --ipv4 http://localhost:9080
 
   displayName: 'Run Tests against localhost'
 
