@@ -54,11 +54,7 @@ steps:
 
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
-    curl -iv --raw \
-    -X GET \
-    -H 'Content-Type: application/json' \
-    -u admin:admin \
-    http://localhost:9080/soavirt/api/v6/status >> tmp/server-hc.log
+    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status >> tmp/server-hc.log
     cat tmp/server-hc.log
     sleep 5s
   displayName: 'Deploy SOAVirt Server'
