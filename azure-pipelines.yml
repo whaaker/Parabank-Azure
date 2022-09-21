@@ -53,7 +53,7 @@ steps:
 
     # Healthcheck Parasoft SOAVirt Server
     echo "\n~~~\nPing SOAVirt\n"
-    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -H "Accept: application/json"
+    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status
 
   displayName: 'Run Tests against localhost'
 
