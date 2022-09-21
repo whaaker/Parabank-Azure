@@ -16,7 +16,7 @@ steps:
     echo "Setting Up"
     mkdir tmp
     echo ${PWD}
-    ls -la ${PWD}
+    ls -R ${PWD}
 
     # Healthcheck LS
     echo "Health check LS"
@@ -55,11 +55,17 @@ steps:
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
     curl -u admin:admin http://localhost:9080/soavirt/api/v6/status >> tmp/server-hc.log
+    ls -R
     cat tmp/server-hc.log
     sleep 5s
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+    curl -X POST \
+    -u admin:admin
+    "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2Fpva%2FHelloWorld.pva" \
+    -H "accept: application/json" \
+    -H "Content-Type: multipart/form-data" \
+    -F "file=@pva/HelloWorld.pva"
   displayName: 'Deploy PVA'
