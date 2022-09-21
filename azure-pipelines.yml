@@ -13,17 +13,17 @@ steps:
 - script: |
     
     # Set up
-    echo "\n~~~\nSetting Up\n"
+    echo "Setting Up"
     mkdir tmp
     echo ${PWD}
     ls -la ${PWD}
 
     # Healthcheck LS
-    echo "\n~~\nHealth check LS\n"
+    echo "Health check LS"
     curl -I $(license.server.url)
 
     # Set Up and write .properties file
-    echo  -e "\n~~~\nSetting up and creating config.properties file.\n"
+    echo  -e "Setting up and creating config.properties file."
     echo $"
     license.network.auth.enabled=true  
     license.network.password=$(license.server.password)
@@ -40,7 +40,7 @@ steps:
     cat tmp/config.properties
 
     # Deloy Docker Virt Server
-    echo "\n~~~\nDeploy Parasoft SOAVirt Server\n"
+    echo "Deploy Parasoft SOAVirt Server."
     docker run -d \
     -p 9080:9080 \
     -p 9617:9617 \
@@ -52,10 +52,10 @@ steps:
     sleep 15s
 
     # Healthcheck Parasoft SOAVirt Server
-    echo "\n~~~\nPing SOAVirt\n"
+    echo "Ping SOAVirt."
     curl -iv --raw \
     -X GET \
-    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
     -u admin:admin \
     http://localhost:9080/soavirt/api/v6/status
     sleep 5s
@@ -64,4 +64,4 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-  displayName: 'Validate PVA '
+  displayName: 'Deploy PVA'
