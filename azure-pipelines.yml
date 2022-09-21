@@ -23,7 +23,7 @@ steps:
     curl -I $(license.server.url)
 
     # Set Up and write .properties file
-    echo  -e "Setting up and creating config.properties file."
+    echo -e "Setting up and creating config.properties file."
     echo $"
     license.network.auth.enabled=true  
     license.network.password=$(license.server.password)
@@ -58,6 +58,7 @@ steps:
     ls -R
     cat tmp/server-hc.json
     sleep 5s
+    echo "FOO."
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
@@ -76,4 +77,5 @@ steps:
     echo "Test PVA."
     curl http://localhost:9080/HelloWorld -o test.json
     cat test.json
+    echo "FOO."
   displayName: 'Test PVA'
