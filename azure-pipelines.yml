@@ -49,7 +49,8 @@ steps:
     --mount type=bind,source="$(pwd)"/tmp/config.properties,target=/usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties \
     --name soavirt-server parasoft/soavirt-server
     
-    sleep 15s
+    # Wait for Server to stand up
+    sleep 10s
 
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
@@ -57,7 +58,8 @@ steps:
     -X GET \
     -H 'Content-Type: application/json' \
     -u admin:admin \
-    http://localhost:9080/soavirt/api/v6/status
+    http://localhost:9080/soavirt/api/v6/status >> tmp/server-hc.log
+    cat tmp/server-hc.log
     sleep 5s
   displayName: 'Deploy SOAVirt Server'
 
