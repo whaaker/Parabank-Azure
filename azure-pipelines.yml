@@ -56,12 +56,12 @@ steps:
     echo "Ping SOAVirt."
     curl -u admin:admin http://localhost:9080/soavirt/api/v6/status >> tmp/server-hc.json
     ls -R
-    cat tmp/server-hc.json
+    echo cat tmp/server-hc.json
     sleep 5s
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
+    echo "Upload PVA."
     curl -X POST \
     -u admin:admin \
     "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2Fpva%2FHelloWorld.pva" \
@@ -69,3 +69,9 @@ steps:
     -H "Content-Type: multipart/form-data" \
     -F "file=@pva/HelloWorld.pva"
   displayName: 'Deploy PVA'
+
+- script: |
+    echo "Test PVA."
+    curl http://localhost:9080/HelloWorld >> test.json
+    cat test.json
+  displayName: 'Test PVA'
