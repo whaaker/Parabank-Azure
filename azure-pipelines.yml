@@ -14,7 +14,7 @@ steps:
 
     # Set up
     echo "\n~~~\nSetting Up\n"
-    mkdir temp
+    mkdir tmp
     echo ${PWD}
     ls -la ${PWD}
 
@@ -37,7 +37,7 @@ steps:
     echo -e "\nDebug -- Verify workspace contents.\n"
     ls -R
     echo -e "\nDebug -- Verify config.properties file contents."
-    cat temp/config.properties
+    cat tmp/config.properties
 
     # Deloy Docker Virt Server
     echo "\n~~~\nDeploy Parasoft SOAVirt Server\n"
