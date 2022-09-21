@@ -25,6 +25,7 @@ steps:
     # Set Up and write .properties file
     echo -e "Setting up and creating config.properties file."
     echo $"
+    parasoft.eula.accepted=true
     license.network.auth.enabled=true  
     license.network.password=$(license.server.password)
     license.network.url=$(license.server.url)
@@ -45,7 +46,6 @@ steps:
     -p 9080:9080 \
     -p 9617:9617 \
     -p 9618:9618 \
-    --env ACCEPT_EULA=true \
     --mount type=bind,source="$(pwd)"/tmp/config.properties,target=/usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties \
     --name soavirt-server parasoft/soavirt-server
     
