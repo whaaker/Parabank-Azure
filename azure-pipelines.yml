@@ -51,6 +51,9 @@ steps:
     
     # Wait for Server to stand up
     sleep 15s
+    
+    curl -X POST \
+    http://localhost:9080/soavirt/api/v6/preferences/systemProperties/reload
 
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
