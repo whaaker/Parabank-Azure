@@ -53,11 +53,11 @@ steps:
 
     # Healthcheck Parasoft SOAVirt Server
     echo "\n~~~\nPing SOAVirt\n"
-    curl -iv --raw -u admin:admin http://localhost:9080/soavirt/api/v6/status
+    curl -iv --raw  -X GET -u admin:admin http://localhost:9080/soavirt/api/v6/status
     sleep 5s
-  displayName: 'Run Tests against localhost'
+  displayName: 'Deploy SOAVirt Server'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  displayName: 'Validate PVA '
