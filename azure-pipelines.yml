@@ -64,7 +64,8 @@ steps:
 - script: |
     echo "Upload PVA."
     cd pva
-    curl -X POST \
+    curl -iv --raw \
+    -X POST \
     -u admin:admin \
     "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2FHelloWorld.pva&deploy=true" \
     -H "accept: application/json" \
