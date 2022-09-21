@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: |
-
+    
     # Set up
     echo "\n~~~\nSetting Up\n"
     mkdir tmp
