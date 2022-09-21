@@ -42,13 +42,14 @@ steps:
 
     # Deloy Docker Virt Server
     echo "Deploy Parasoft SOAVirt Server."
-    docker run -d \
+    docker run -i \
     -u 0:0 \
     -p 9080:9080 \
     -p 9617:9617 \
     -p 9618:9618 \
     --mount "type=bind,source=$(pwd)/tmp/config.properties,target=/usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties" \
-    --name soavirt-server parasoft/soavirt-server
+    --name soavirt-server parasoft/soavirt-server /bin/bash -c " \
+    cat /usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties"
     
     # Wait for Server to stand up
     sleep 15s
