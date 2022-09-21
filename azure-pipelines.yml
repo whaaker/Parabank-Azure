@@ -45,13 +45,14 @@ steps:
     -p 9617:9617 \
     -p 9618:9618 \
     --env ACCEPT_EULA=true \
+    --mount type=bind,source="$(pwd)"/tmp/config.properties,target=/usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties
     --name soavirt-server parasoft/soavirt-server
     
     sleep 15s
 
     # Healthcheck Parasoft SOAVirt Server
     echo "\n~~~\nPing SOAVirt\n"
-    curl -I -u admin:admin http://localhost:9080/soavirt/api/v6/status -H "Accept: application/json"
+    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -H "Accept: application/json"
 
   displayName: 'Run Tests against localhost'
 
