@@ -47,11 +47,11 @@ steps:
     --env ACCEPT_EULA=true \
     --name soavirt-server parasoft/soavirt-server
     
-    sleep 30s
+    sleep 15s
 
     # Healthcheck Parasoft SOAVirt Server
     echo "\n~~~\nPing SOAVirt\n"
-    curl -I http://localhost:9080
+    curl -I -u admin:admin http://localhost:9080/soavirt/api/v6/status
 
   displayName: 'Run Tests against localhost'
 
