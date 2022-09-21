@@ -53,8 +53,8 @@ steps:
 
     # Healthcheck Parasoft SOAVirt Server
     echo "\n~~~\nPing SOAVirt\n"
-    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status
-
+    curl -iv --raw -u admin:admin http://localhost:9080/soavirt/api/v6/status
+    sleep 5s
   displayName: 'Run Tests against localhost'
 
 - script: |
