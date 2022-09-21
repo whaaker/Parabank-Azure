@@ -71,6 +71,7 @@ steps:
     -H "Content-Type: multipart/form-data" \
     -F "file=@HelloWorld.pva"
     sleep 5s
+    echo "FOO"
   displayName: 'Deploy PVA'
 
 - script: |
