@@ -13,7 +13,7 @@ steps:
 - script: |
     
     # Set up
-    echo "Setting Up"
+    echo "Setting Up."
     mkdir tmp
     echo ${PWD}
     ls -R ${PWD}
@@ -49,7 +49,7 @@ steps:
     do
       echo ${file}
       curl -iv --raw \
-      -G -X POST \
+      -X POST \
       -u admin:admin \
       --data-urlencode "id=/VirtualAssets/${file}" \
       --data-urlencode "deploy=true" \
