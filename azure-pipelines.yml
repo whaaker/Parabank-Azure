@@ -44,10 +44,10 @@ steps:
     echo "Deploy Parasoft SOAVirt Server."
     docker run -d \
     -u 0:0 \
-    -e ACCEPT_EULA=true
     -p 9080:9080 \
     -p 9617:9617 \
     -p 9618:9618 \
+    --env ACCEPT_EULA=true
     --name soavirt-server parasoft/soavirt-server
     
     # Wait for Server to stand up
