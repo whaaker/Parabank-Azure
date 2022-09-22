@@ -18,28 +18,6 @@ steps:
     echo ${PWD}
     ls -R ${PWD}
 
-    # Healthcheck LS
-    echo "Health check LS"
-    curl -u admin:$(license.server.password) $(license.server.url)
-
-    # Set Up and write .properties file
-    echo -e "Setting up and creating config.properties file."
-    echo $"
-    parasoft.eula.accepted=true
-    license.network.auth.enabled=true  
-    license.network.password=$(license.server.password)
-    license.network.url=$(license.server.url)
-    license.network.use.specified.server=true
-    license.network.user=admin
-    soatest.license.network.edition=automation_edition
-    soatest.license.use_network=true
-    virtualize.license.network.edition=performance_server_edition
-    virtualize.license.use_network=true" >> tmp/config.properties
-    echo -e "\nDebug -- Verify workspace contents.\n"
-    ls -R
-    echo -e "\nDebug -- Verify config.properties file contents."
-    cat tmp/config.properties
-
     # Deloy Docker Virt Server
     echo "Deploy Parasoft SOAVirt Server."
     docker run -d \
@@ -58,34 +36,34 @@ steps:
     -u admin:admin \
     -H "accept: application/json" \
     -H "Content-Type: application/json" \
-    -d "{\"license\":{\"licenseServer\":{\"host\":\"34.212.121.186\",\"port\":8443,\"useSpecifiedServer\":true,\"connectionType\":\"http\",\"authEnabled\":true,\"username\":\"admin\",\"password\":\"parasoft.vm\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
+    -d "{\"license\":{\"licenseServer\":{\"host\":\"$(license.server.host)\",\"port\":$(license.server.port),\"useSpecifiedServer\":true,\"connectionType\":\"http\",\"authEnabled\":true,\"username\":\"admin\",\"password\":\"$(license.server.password)\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
 
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
     curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -o tmp/server-hc.json
     ls -R
     cat tmp/server-hc.json
-    sleep 5s
-    echo "FOO."
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
     echo "Upload PVA."
     cd pva
-    curl -iv --raw \
-    -X POST \
-    -u admin:admin \
-    "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2FHelloWorld.pva&deploy=true" \
-    -H "accept: application/json" \
-    -H "Content-Type: multipart/form-data" \
-    -F "file=@HelloWorld.pva"
-    sleep 5s
-    echo "FOO"
+
+    for file in .
+    do
+      curl -iv --raw \
+      -X POST \
+      -u admin:admin \
+      http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=false \
+      -H "accept: application/json" \
+      -H "Content-Type: multipart/form-data" \
+      -F file=@${file}
+    done
+
   displayName: 'Deploy PVA'
 
 - script: |
     echo "Test PVA."
     curl http://localhost:9080/HelloWorld -o test.json
     cat test.json
-    echo "FOO."
   displayName: 'Test PVA'
