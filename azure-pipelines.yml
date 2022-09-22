@@ -46,7 +46,7 @@ steps:
     echo "Upload PVA."
     cd pva
 
-    for file in .
+    for file in ./*
     do
       curl -iv --raw \
       -X POST \
