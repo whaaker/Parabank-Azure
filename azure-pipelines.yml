@@ -63,6 +63,6 @@ steps:
 
 - script: |
     echo "Test PVA."
-    curl http://localhost:9080/HelloWorld -o test.json
+    curl http://localhost:9080/pva/HelloWorld -o test.json
     cat test.json
   displayName: 'Test PVA'
