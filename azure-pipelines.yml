@@ -21,11 +21,8 @@ steps:
     # Deloy Docker Virt Server
     echo "Deploy Parasoft SOAVirt Server."
     docker run -d \
-    -u 0:0 \
     -p 9080:9080 \
-    -p 9617:9617 \
-    -p 9618:9618 \
-    --env ACCEPT_EULA=true \
+    -e ACCEPT_EULA=true \
     --name soavirt-server parasoft/soavirt-server
     
     # Wait for Server to stand up
@@ -57,7 +54,9 @@ steps:
       http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=false \
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
-      -F file=@${file}
+      -F file=@${file} -o ${file}-upload.json
+      cat ${file}-upload.json
+      echo "FOO."
     done
 
   displayName: 'Deploy PVA'
