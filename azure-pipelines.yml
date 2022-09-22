@@ -52,9 +52,9 @@ steps:
       -u admin:admin \
       http://localhost:9080/soavirt/api/v6/files/upload \
       -H "accept: application/json" \
-      # -H "Content-Type: multipart/form-data" \
-      --data-urlencoded "id=${file}" \
-      --data-urlencoded "deploy=true" \
+      -H "Content-Type: multipart/form-data" \
+      -F "id=${file}" \
+      -F "deploy=true" \
       -o ${file}-upload.json
       cat ${file}-upload.json
       echo "FOO."
