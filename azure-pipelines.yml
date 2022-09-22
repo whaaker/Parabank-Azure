@@ -50,15 +50,11 @@ steps:
       echo ${file}
       curl -iv --raw \
       -F file=@${file} \
+      -F "id=${file}" \
+      -F "deploy=true"
       -u admin:admin \
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
-      http://localhost:9080/soavirt/api/v6/files/upload \
-      --next \
-      --data-urlencode "id=${file}" \
-      --data-urlencode "deploy=true" \
-      http://localhost:9080/soavirt/api/v6/files/upload \
-
       -o ${file}-upload.json
       cat ${file}-upload.json
       echo "FOO."
