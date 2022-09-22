@@ -20,7 +20,7 @@ steps:
 
     # Healthcheck LS
     echo "Health check LS"
-    curl -I $(license.server.url)
+    curl -u admin:$(license.server.password) $(license.server.url)
 
     # Set Up and write .properties file
     echo -e "Setting up and creating config.properties file."
@@ -47,15 +47,17 @@ steps:
     -p 9080:9080 \
     -p 9617:9617 \
     -p 9618:9618 \
-    --mount "type=bind,source=$(pwd)/tmp/config.properties,target=/usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties" \
-    --name soavirt-server parasoft/soavirt-server /bin/bash -c " \
-    cat /usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties"
+    --name soavirt-server parasoft/soavirt-server
     
     # Wait for Server to stand up
     sleep 15s
     
-    curl -X POST \
-    -u admin:admin http://localhost:9080/soavirt/api/v6/preferences/systemProperties/reload
+    # Apply License
+    curl -X PUT "http://localhost:9080/soavirt/api/v6/preferences/config" \
+    -u admin:admin \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d "{\"license\":{\"licenseServer\":{\"host\":\"34.212.121.186\",\"port\":8443,\"useSpecifiedServer\":true,\"connectionType\":\"http\",\"authEnabled\":true,\"username\":\"admin\",\"password\":\"parasoft.vm\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
 
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
