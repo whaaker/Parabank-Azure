@@ -31,15 +31,15 @@ steps:
     # Apply License
     curl -X PUT "http://localhost:9080/soavirt/api/v6/preferences/config" \
     -u admin:admin \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
+    -H "accept: application/log" \
+    -H "Content-Type: application/log" \
     -d "{\"license\":{\"licenseServer\":{\"host\":\"$(license.server.host)\",\"port\":$(license.server.port),\"useSpecifiedServer\":true,\"connectionType\":\"http\",\"authEnabled\":true,\"username\":\"admin\",\"password\":\"$(license.server.password)\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
 
     # Healthcheck Parasoft SOAVirt Server
     echo "Ping SOAVirt."
-    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -o tmp/server-hc.json
+    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -o tmp/server-hc.log
     ls -R
-    cat tmp/server-hc.json
+    cat tmp/server-hc.log
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
@@ -50,16 +50,14 @@ steps:
     do
       echo ${file}
       curl -iv --raw \
-      -X POST \
       -u admin:admin \
-      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2FHelloWorld.pva&deploy=true" \
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
-      -F "file=@${file}" \
-      -o ${file}-upload.json
+      -F "file=@HelloWorld.pva" \
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2FHelloWorld.pva&deploy=true" -o ${file}-upload.log
 
       echo -e "\nDebug.\n"
-      cat ${file}-upload.json
+      cat ${file}-upload.log
       echo -e "\nFOO."
     done
   displayName: 'Deploy PVA'
@@ -67,6 +65,5 @@ steps:
 - script: |
     echo "Test PVA."
     curl -v http://localhost:9080
-    curl http://localhost:9080/HelloWorld -o test.json
-    cat test.json
+    cat test.log
   displayName: 'Test PVA'
