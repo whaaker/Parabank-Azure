@@ -19,8 +19,8 @@ See:  POST /v6/files/upload on the <host>:<port>/soavirt/api REST API page for a
 ```
 .
 +-- virt
-|   +-- hello_world.pva
-|   +-- hello_world.pvadd
+|   +-- HelloWorld.pva
+|   +-- HelloWorld.pvadd
 +-- .gitignore
 +-- README.md
 +-- azure-pipelines.yaml
