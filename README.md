@@ -14,7 +14,7 @@ The follwing repo demosntartes a repository flow which pushes the contents of th
 
 ```
 .
-+-- tests
++-- tests (optional)
 |   +-- test_hello_world.tst
 +-- virt
 |   +-- hello_world.pva
