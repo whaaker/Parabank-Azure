@@ -51,7 +51,7 @@ steps:
       curl -iv --raw \
       -X POST \
       -u admin:admin \
-      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2Fvirt%2FHelloWorld.pva&deploy=true" \
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%F2FHelloWorld.pva&deploy=true" \
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
       -F "file=@${file}" \
@@ -66,6 +66,6 @@ steps:
 - script: |
     echo "Test PVA."
     curl -v http://localhost:9080
-    curl http://localhost:9080/virt/HelloWorld -o test.json
+    curl http://localhost:9080/HelloWorld -o test.json
     cat test.json
   displayName: 'Test PVA'
