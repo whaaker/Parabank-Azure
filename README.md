@@ -14,12 +14,9 @@ The follwing repo demosntartes a repository flow which pushes the contents of th
 
 ```
 .
-+-- tests (optional)
-|   +-- test_hello_world.tst
 +-- virt
 |   +-- hello_world.pva
 |   +-- hello_world.pvadd
-|   +-- hello_world.pmpdd
 +-- .gitignore
 +-- README.md
 +-- azure-pipelines.yaml
