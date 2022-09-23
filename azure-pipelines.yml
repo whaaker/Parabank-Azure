@@ -54,10 +54,11 @@ steps:
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
       -F "file=@HelloWorld.pva" \
-      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2FHelloWorld.pva&deploy=true" -o ${file}-upload.log
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2FHelloWorld.pva&deploy=true&replace=ture" -o ${file}-upload.log
 
       echo -e "\nDebug.\n"
       cat ${file}-upload.log
+      sleep 5s
       echo -e "\nFOO."
     done
   displayName: 'Deploy PVA'
