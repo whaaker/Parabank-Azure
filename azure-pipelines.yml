@@ -45,7 +45,8 @@ steps:
 - script: |
     echo "Upload PVA."
 
-    for file in virt/*
+    cd virt
+    for file in *
     do
       echo ${file}
       curl -iv --raw \
