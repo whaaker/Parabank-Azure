@@ -58,7 +58,7 @@ steps:
       echo -e "\nDebug.\n"
       cat upload.log
       sleep 5s
-      echo -e "\nFOO."
+      echo -e "\nDone."
     done
   displayName: 'Deploy PVA'
 
@@ -66,4 +66,5 @@ steps:
     echo "Test PVA."
     curl -v http://localhost:9080/HelloWorld -o test.log
     cat test.log
+    echo -e "Done.
   displayName: 'Test PVA'
