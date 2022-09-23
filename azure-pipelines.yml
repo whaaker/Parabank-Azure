@@ -51,9 +51,7 @@ steps:
       curl -iv --raw \
       -X POST \
       -u admin:admin \
-      --data-urlencode "id=/VirtualAssets/${file}" \
-      --data-urlencode "deploy=true" \
-      http://localhost:9080/soavirt/api/v6/files/upload \
+      http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2Fvirt%2Fhello_world.pva&deploy=true \
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
       -F file=@${file} -o ${file}-upload.json
