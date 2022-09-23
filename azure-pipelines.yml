@@ -59,6 +59,7 @@ steps:
 
       echo -e "\nDebug.\n"
       cat ${file}-upload.json
+      echo -e "\nFOO."
     done
   displayName: 'Deploy PVA'
 
