@@ -13,13 +13,13 @@ steps:
 - script: |
     
     # Set up
-    echo "Setting Up."
+    echo -e "\nSetting Up.\n"
     mkdir tmp
     echo ${PWD}
     ls -R ${PWD}
 
     # Deloy Docker Virt Server
-    echo "Deploy Parasoft SOAVirt Server."
+    echo -e "\nDeploying Parasoft SOAVirt Server.\n"
     docker run -d \
     -p 9080:9080 \
     -e ACCEPT_EULA=true \
@@ -29,6 +29,7 @@ steps:
     sleep 15s
     
     # Apply License
+    echo -e "\nApplying License.\n"
     curl -X PUT "http://localhost:9080/soavirt/api/v6/preferences/config" \
     -u admin:admin \
     -H "accept: application/log" \
@@ -36,14 +37,14 @@ steps:
     -d "{\"license\":{\"licenseServer\":{\"host\":\"$(license.server.host)\",\"port\":$(license.server.port),\"useSpecifiedServer\":true,\"connectionType\":\"http\",\"authEnabled\":true,\"username\":\"admin\",\"password\":\"$(license.server.password)\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
 
     # Healthcheck Parasoft SOAVirt Server
-    echo "Ping SOAVirt."
+    echo -e "\nPing SOAVirt.\n"
     curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -o tmp/server-hc.log
     ls -R
     cat tmp/server-hc.log
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
-    echo "Upload PVA."
+    echo -e "\nUploading Files.\n"
     cd virt
     for file in *
     do
@@ -61,11 +62,17 @@ steps:
       sleep 5s
       echo -e "\nDone."
     done
-  displayName: 'Deploy PVA'
+  displayName: 'Deploy Virtual Assets'
 
 - script: |
-    echo "Test PVA."
+    echo -e "\nTesting Virtual Assets.\n"
     curl -v http://localhost:9080/HelloWorld -o test.log
     cat test.log
     echo -e "\nDone."
-  displayName: 'Test PVA'
+  displayName: 'Test Virtual Assets'
+
+- script: |
+    echo -e "\nPush assets to PROD.\n"
+    echo Placeholder
+    echo -e "\nDone."
+  displayName: 'Push to PROD'
