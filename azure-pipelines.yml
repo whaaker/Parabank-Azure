@@ -66,5 +66,5 @@ steps:
     echo "Test PVA."
     curl -v http://localhost:9080/HelloWorld -o test.log
     cat test.log
-    echo -e "Done.
+    echo -e "\nDone.
   displayName: 'Test PVA'
