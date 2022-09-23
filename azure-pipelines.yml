@@ -53,7 +53,8 @@ steps:
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
       -F "file=@${file}" \
-      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=true&replace=ture" -o upload.log
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=true&replace=ture" \
+      -o upload.log
 
       echo -e "\nDebug.\n"
       cat upload.log
@@ -66,5 +67,5 @@ steps:
     echo "Test PVA."
     curl -v http://localhost:9080/HelloWorld -o test.log
     cat test.log
-    echo -e "\nDone.
+    echo -e "\nDone."
   displayName: 'Test PVA'
