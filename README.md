@@ -1,22 +1,26 @@
 # Hello World
 
 ## Description
-The follwing repo demosntartes a repository flow which pushes the contents of the repo to a Docker SOAVirt Server, run validation then destroys it. Once the validation is complete the contents can be pushed to a prod server.
+The following example demonstrates a job that creates an ephemeral Docker container in Azure and upload/deploys/replaces a pva on the server and runs a curl against it to validate it.
 
 ## Logical Flow
 
-1. User cehcks assets into SC either via GUI or git bash 
-2. The got repo triggers an ADO build. See: azure-pipelines.yaml
-3. The ADO build pulls down a docker conatiner, licenses it, and uploads assets in /virt folder via /files/upload REST API
-4. The buld runs a culr validation step and concludes.
+1.	User checks assets into SCM. Typically this is done via git commit/push/etc or EGit plugin for Eclipse. The user may check in any or all of the following:
+	1.	.pva file – virtual asset
+	2.	.pvadd file - deployment details if deploy option in step 3 is set to false 
+	3.	.pmpdd file – proxy.
+2.	Git repositories use webhooks to trigger build/test jobs – i.e. Jenkins, Ado, gitlab, etc
+3.	The job needs to call the soavirt server API to upload the file, with two optional flags: deploy=true or false; replace=true or false.
+See:  POST /v6/files/upload on the <host>:<port>/soavirt/api REST API page for additional documentation regarding this API call.
+4.	After that you run you validation or repeat step 3 for any additional servers.
 
 ## Project Structure
 
 ```
 .
 +-- virt
-|   +-- hello_world.pva
-|   +-- hello_world.pvadd
+|   +-- HelloWorld.pva
+|   +-- HelloWorld.pvadd
 +-- .gitignore
 +-- README.md
 +-- azure-pipelines.yaml
