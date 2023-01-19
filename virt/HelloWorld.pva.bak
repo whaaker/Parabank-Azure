@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAtestProject xmlVersion="5" productVersion="10.6.1" displayVersion="2022.2.0">
+<SOAtestProject xmlVersion="5" productVersion="10.6" displayVersion="2022.1.0">
  <TestSuite className="webtool.test.TestSuite" version="48.15.2">
   <DebugAssets className="webtool.test.debug.DebugAssets" version="1">
   </DebugAssets>
@@ -86,7 +86,7 @@
   <maxProfileMappingID>1</maxProfileMappingID>
   <PropertyOwnerImpl className="com.parasoft.property.PropertyOwnerImpl" version="1.1">
   </PropertyOwnerImpl>
-  <nextIdentifier>4</nextIdentifier>
+  <nextIdentifier>3</nextIdentifier>
   <testsSize>1</testsSize>
   <ClientTesterTest className="webtool.soap.client.ClientTesterTest" version="1.1.4.15.2">
    <DebugAssets className="webtool.test.debug.DebugAssets" version="1">
@@ -1296,12 +1296,12 @@
              <hash>8</hash>
              <name>type</name>
              <fixed>string</fixed>
-             <StringType className="webtool.soap.StringType" version="2">
-              <hash>4</hash>
+             <StringType className="webtool.soap.StringType" version="2.5.3">
+              <hash>9</hash>
              </StringType>
             </AttributeType>
             <content>true</content>
-            <StringType className="webtool.soap.StringType" version="2.5.3">
+            <StringType className="webtool.soap.StringType" version="2">
              <hash>9</hash>
             </StringType>
             <namespace>urn:parasoft:json</namespace>
@@ -1338,7 +1338,7 @@
              </AttributeValue>
              <contentValue>true</contentValue>
              <StringValue className="webtool.soap.StringValue" version="1.9.1.13">
-              <value>HelloWorld!!!</value>
+              <value>HelloWorld</value>
              </StringValue>
             </ComplexValue>
            </ElementValue>
@@ -1396,7 +1396,7 @@
     </CorrelationConditionSet>
     <LocationObject className="webtool.wsdl.LocationObject" version="2">
     </LocationObject>
-    <ClientTesterServiceOptions className="webtool.soap.client.ClientTesterServiceOptions" version="1.24">
+    <ClientTesterServiceOptions className="webtool.soap.client.ClientTesterServiceOptions" version="1.23">
      <ApplyableBooleanConfiguration className="com.parasoft.gui.ApplyableBooleanConfiguration" version="1.2.2">
      </ApplyableBooleanConfiguration>
      <ClientTesterEncodingOptions className="webtool.soap.client.ClientTesterEncodingOptions" version="1.1">
