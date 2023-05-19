@@ -44,6 +44,7 @@ steps:
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
+    # Upload Files
     echo -e "\nUploading Files.\n"
     cd virt
     for file in *
