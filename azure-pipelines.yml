@@ -44,6 +44,7 @@ steps:
   displayName: 'Deploy SOAVirt Server'
 
 - script: |
+
     # Upload Files
     echo -e "\nUploading Files.\n"
     cd virt
@@ -66,6 +67,8 @@ steps:
   displayName: 'Deploy Virtual Assets'
 
 - script: |
+    
+    # Test PVA
     echo -e "\nTesting Virtual Assets.\n"
     curl -iv --raw http://localhost:9080/HelloWorld -o test.log
     cat test.log
@@ -73,6 +76,8 @@ steps:
   displayName: 'Test Virtual Assets'
 
 - script: |
+
+    # Release
     echo -e "\nPush assets to PROD.\n"
     echo Placeholder
     echo -e "\nDone."
