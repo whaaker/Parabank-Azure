@@ -56,7 +56,7 @@ steps:
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
       -F "file=@${file}" \
-      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F/v1/${file}&deploy=false&replace=true" \
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2Fv1%2F${file}&deploy=false&replace=true" \
       -o upload.log
 
       echo -e "\nDebug.\n"
