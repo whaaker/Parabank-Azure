@@ -34,7 +34,7 @@ steps:
     -u admin:admin \
     -H "accept: application/log" \
     -H "Content-Type: application/log" \
-    -d "{\"license\":{\"licenseServer\":{\"host\":\"$(license.server.host)\",\"port\":$(license.server.port),\"useSpecifiedServer\":true,\"connectionType\":\"http\",\"authEnabled\":true,\"username\":\"admin\",\"password\":\"$(license.server.password)\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
+    -d "{\"license\":{\"licenseServer\":{\"host\":\"$(license.server.host)\",\"port\":$(license.server.port),\"useSpecifiedServer\":true,\"connectionType\":\"https\",\"authEnabled\":true,\"username\":\"$(license.server.username)\",\"password\":\"$(license.server.password)\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
 
     # Healthcheck Parasoft SOAVirt Server
     echo -e "\nPing SOAVirt.\n"
