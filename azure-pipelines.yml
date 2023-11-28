@@ -104,7 +104,8 @@ steps:
     cat /temp/soatestcli.properties; \
     soatestcli \
     -settings /temp/soatestcli.properties \
-    -import /temp/$(soatest.project); \
+    -import /temp/APITests; \
+    
     soatestcli \
     -resource /$(soatest.project) \
     -config 'user://Example Configuration' \
