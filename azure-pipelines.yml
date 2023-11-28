@@ -111,12 +111,12 @@ steps:
     ls
     cp -f -R /root/parasoft/soavirt_workspace/hello-world ./soavirt_workspace/hello-world; \
     cat /temp/soatestcli.properties; \
-    ./soavirt/soatestcli \
+    soatestcli \
     -settings /temp/soatestcli.properties \
     -import ./soavirt_workspace/hello-world/APITests; \
     cd /root/parasoft/soavirt_workspace
     ls
-    ./soavirt/soatestcli \
+    soatestcli \
     -data ./soavirt_workspace \
     -resource /$(soatest.project) \
     -config 'user://Example Configuration' \
