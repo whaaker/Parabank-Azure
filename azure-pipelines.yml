@@ -103,7 +103,6 @@ steps:
     -v "$(pwd)/temp:/temp" \
     -w /root/parasoft/soavirt_workspace \
     parasoft/soavirt /bin/bash -c " \
-    cd ..
     ls
     mkdir -p ./soavirt_workspace; \
     ls
