@@ -103,8 +103,12 @@ steps:
     -v "$(pwd)/temp:/temp" \
     -w /root/parasoft/soavirt_workspace \
     parasoft/soavirt /bin/bash -c " \
+    echo working directory
+    echo ${PWD}
+    echo display inside bin bash
     ls
     mkdir -p ./soavirt_workspace; \
+    echo display after creating soavirt_workspace
     ls
     cp -f -R ./hello-world ./soavirt_workspace/hello-world; \
     cat /temp/soatestcli.properties; \
