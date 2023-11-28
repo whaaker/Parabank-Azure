@@ -113,10 +113,13 @@ steps:
     cat /temp/soatestcli.properties; \
     soatestcli \
     -settings /temp/soatestcli.properties \
-    -import ./soavirt_workspace/hello-world/APITests; \
-    ls
+    -import ./soavirt_workspace/hello-world/APITests/; \
+    echo checking soavirt directory after importing
+    cd soavirt_workspace
+    ls -R
+    cd ..
     soatestcli \
-    -data ./soavirt_workspace \
+    -data ./soavirt_workspace/hello-world \
     -resource /$(soatest.project) \
     -config 'user://Example Configuration' \
     -settings /temp/soatestcli.properties \
