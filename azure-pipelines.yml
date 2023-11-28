@@ -103,14 +103,15 @@ steps:
     parasoft/soavirt /bin/bash -c " \
     ls
     mkdir -p ./soavirt_workspace; \
+    ls
     cp -f -R ./APITests ./soavirt_workspace/APITests; \
     cat /temp/soatestcli.properties; \
-    ./soavirt/soatestcli \
+    soatestcli \
     -settings /temp/soatestcli.properties \
     -import ./soavirt_workspace/APITests/.project; \
     cd /root/parasoft/soavirt_workspace
     ls
-    ./soavirt/soatestcli \
+    soatestcli \
     -data ./soavirt_workspace \
     -resource /$(soatest.project) \
     -config 'user://Example Configuration' \
