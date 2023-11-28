@@ -114,7 +114,6 @@ steps:
     soatestcli \
     -settings /temp/soatestcli.properties \
     -import ./soavirt_workspace/hello-world/APITests; \
-    cd /root/parasoft/soavirt_workspace
     ls
     soatestcli \
     -data ./soavirt_workspace \
