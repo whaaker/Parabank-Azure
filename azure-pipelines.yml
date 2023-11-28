@@ -78,7 +78,7 @@ steps:
     echo ${PWD}
     echo "Copy SOAtest project contents to volume directory."
     cp -R $(soatest.project) temp/.
-    
+    ls -R
     # Set Up and write .properties file
     echo  -e "\n~~~\nSetting up and creating soatestcli.properties file.\n"
     echo $"
@@ -101,6 +101,7 @@ steps:
     -e ACCEPT_EULA=true \
     -v "$(pwd)/temp:/temp" \
     parasoft/soavirt /bin/bash -c " \
+    ls -R
     cat /temp/soatestcli.properties; \
     soatestcli \
     -settings /temp/soatestcli.properties \
