@@ -109,7 +109,7 @@ steps:
     mkdir -p ./soavirt_workspace; \
     echo display after creating soavirt_workspace
     ls
-    cp -f -R ./hello-world ./soavirt_workspace/hello-world; \
+    cp -f -R /root/parasoft/soavirt_workspace/hello-world ./soavirt_workspace/hello-world; \
     cat /temp/soatestcli.properties; \
     ./soavirt/soatestcli \
     -settings /temp/soatestcli.properties \
