@@ -56,7 +56,7 @@ steps:
     -import /temp/$(soatest.project); \
     ls
     soatestcli \
-    -resource /$(soatest.project) \
+    -resource / \
     -config 'user://Example Configuration' \
     -settings /temp/soatestcli.properties \
     -report /temp"
