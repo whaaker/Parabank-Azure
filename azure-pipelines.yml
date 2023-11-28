@@ -105,7 +105,8 @@ steps:
     soatestcli \
     -settings /temp/soatestcli.properties \
     -import /temp/APITests; \
-    
+    cd /root/parasoft/soavirt_workspace
+    ls -R
     soatestcli \
     -data /root/parasoft/soavirt_workspace \
     -resource /$(soatest.project) \
