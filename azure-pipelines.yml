@@ -99,17 +99,19 @@ steps:
     docker run -i \
     -u 0:0 \
     -e ACCEPT_EULA=true \
-    -v "$(pwd)/APITests:/temp" \
+    -v "$(pwd)/hello-world:/root/parasoft/soavirt_workspace/hello-world" \
+    -v "$(pwd)/temp:/temp" \
+    -w /root/parasoft/soavirt_workspace
     parasoft/soavirt /bin/bash -c " \
     cd ..
     ls
     mkdir -p ./soavirt_workspace; \
     ls
-    cp -f -R ./APITests ./soavirt_workspace/APITests; \
+    cp -f -R ./hello-world ./soavirt_workspace/hello-world; \
     cat /temp/soatestcli.properties; \
     ./soavirt/soatestcli \
     -settings /temp/soatestcli.properties \
-    -import ./soavirt_workspace/APITests/.project; \
+    -import ./soavirt_workspace/hello-world/APITests; \
     cd /root/parasoft/soavirt_workspace
     ls
     ./soavirt/soatestcli \
