@@ -105,7 +105,7 @@ steps:
     mkdir -p ./soavirt_workspace; \
     cp -f -R ./APITests ./soavirt_workspace/APITests; \
     cat /temp/soatestcli.properties; \
-    soatestcli \
+    ./soavirt/soatestcli \
     -settings /temp/soatestcli.properties \
     -import ./soavirt_workspace/APITests/.project; \
     cd /root/parasoft/soavirt_workspace
