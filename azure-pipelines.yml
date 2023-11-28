@@ -101,7 +101,6 @@ steps:
     -e ACCEPT_EULA=true \
     -v "$(pwd)/hello-world:/root/parasoft/soavirt_workspace/hello-world" \
     -v "$(pwd)/temp:/temp" \
-    # -w /root/parasoft/soavirt_workspace \
     parasoft/soavirt /bin/bash -c " \
     echo working directory
     echo ${PWD}
