@@ -101,17 +101,18 @@ steps:
     -e ACCEPT_EULA=true \
     -v "$(pwd)/APITests:/temp" \
     parasoft/soavirt /bin/bash -c " \
+    cd ..
     ls
     mkdir -p ./soavirt_workspace; \
     ls
     cp -f -R ./APITests ./soavirt_workspace/APITests; \
     cat /temp/soatestcli.properties; \
-    soatestcli \
+    ./soavirt/soatestcli \
     -settings /temp/soatestcli.properties \
     -import ./soavirt_workspace/APITests/.project; \
     cd /root/parasoft/soavirt_workspace
     ls
-    soatestcli \
+    ./soavirt/soatestcli \
     -data ./soavirt_workspace \
     -resource /$(soatest.project) \
     -config 'user://Example Configuration' \
