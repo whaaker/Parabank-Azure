@@ -18,12 +18,13 @@ steps:
     echo ${PWD}
     ls -R ${PWD}
 
+    docker network create demo-net
     # Deloy Docker Virt Server
     echo -e "\nDeploying Parasoft SOAVirt Server.\n"
     docker run -d \
     -p 9080:9080 \
-    --network=demo-net \
     -e ACCEPT_EULA=true \
+    --network=demo-net \
     --name soavirt-server parasoft/soavirt-server
     
     # Wait for Server to stand up
