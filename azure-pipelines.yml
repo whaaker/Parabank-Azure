@@ -70,8 +70,8 @@ steps:
     
     # Test PVA
     echo -e "\nTesting Virtual Assets.\n"
-    #curl -iv --raw http://localhost:9080/v1/HelloWorld -o test.log
-    #cat test.log
+    curl -iv --raw http://localhost:9080/HelloWorld -o test.log
+    cat test.log
     echo "Starting Pipeline Execution."
     echo "Create ./temp directory for volume mount."
     mkdir temp
