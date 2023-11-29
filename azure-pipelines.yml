@@ -114,6 +114,8 @@ steps:
     echo -e "\nDone."
   displayName: 'Test Virtual Assets'
 
+- publish: /home/vsts/work/1/s/temp
+  artifact: TSA
 - script: |
 
     # Release
