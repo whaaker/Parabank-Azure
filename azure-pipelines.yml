@@ -22,6 +22,7 @@ steps:
     echo -e "\nDeploying Parasoft SOAVirt Server.\n"
     docker run -d \
     -p 9080:9080 \
+    --network=demo-net \
     -e ACCEPT_EULA=true \
     --name soavirt-server parasoft/soavirt-server
     
@@ -100,6 +101,7 @@ steps:
     -u 0:0 \
     -e ACCEPT_EULA=true \
     -v "$(pwd)/temp:/temp" \
+     --network=demo-net \
     parasoft/soavirt /bin/bash -c " \
     cat /temp/soatestcli.properties; \
     soatestcli \
