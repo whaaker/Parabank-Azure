@@ -20,8 +20,8 @@ The following example demonstrates a job that creates an ephemeral Docker contai
 ```
 .
 +-- virt
-|   +-- HelloWorld.pva
-|   +-- HelloWorld.pvadd
+|   +-- Parabank.pva
+|   +-- Parabank.pvadd
 +-- .gitignore
 +-- README.md
 +-- azure-pipelines.yaml
