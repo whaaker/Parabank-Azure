@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAtestProject xmlVersion="5" productVersion="10.6" displayVersion="2022.1.0">
- <TestSuite className="webtool.test.TestSuite" version="48.15.2">
+<SOAtestProject xmlVersion="5" productVersion="10.6.2" displayVersion="2023.1.0">
+ <TestSuite className="webtool.test.TestSuite" version="49.15.2">
   <DebugAssets className="webtool.test.debug.DebugAssets" version="1">
   </DebugAssets>
   <ReportingSettings className="webtool.test.ReportingSettings" version="1.1">
@@ -12,6 +12,8 @@
   </EnvironmentConfiguration>
   <enabled>true</enabled>
   <name>Responder Suite</name>
+  <rootTestSuite spDataVersion="10.6.2">true</rootTestSuite>
+  <lastModifiedBy spDataVersion="10.6.2">gtrofimov</lastModifiedBy>
   <TestSuitePerformanceOptions className="webtool.test.performance.TestSuitePerformanceOptions" version="1.5">
    <APMPerformanceProfileProviderContainer className="webtool.test.performance.apm.APMPerformanceProfileProviderContainer" version="1.1">
    </APMPerformanceProfileProviderContainer>
@@ -86,7 +88,7 @@
   <maxProfileMappingID>1</maxProfileMappingID>
   <PropertyOwnerImpl className="com.parasoft.property.PropertyOwnerImpl" version="1.1">
   </PropertyOwnerImpl>
-  <nextIdentifier>3</nextIdentifier>
+  <nextIdentifier>8</nextIdentifier>
   <testsSize>1</testsSize>
   <ClientTesterTest className="webtool.soap.client.ClientTesterTest" version="1.1.4.15.2">
    <DebugAssets className="webtool.test.debug.DebugAssets" version="1">
@@ -98,7 +100,7 @@
    <testID>2</testID>
    <enabled>true</enabled>
    <name>JSON Message Responder</name>
-   <ClientTester className="webtool.soap.client.ClientTester" version="v.2.36.17.14">
+   <ClientTester className="webtool.soap.client.ClientTester" version="v.2.39.17.14">
     <iconName>TestClient</iconName>
     <name>JSON Message Responder</name>
     <SonicMQJNDIProperties className="webtool.messaging.SonicMQJNDIProperties" version="2.21.1">
@@ -545,7 +547,8 @@
        </MultiValue>
       </EnumNameValuePair>
      </ApplyableMQSSLConfiguration>
-     <MQConnectionProperties className="webtool.messaging.MQConnectionProperties" version="1.5">
+     <MQConnectionProperties className="webtool.messaging.MQConnectionProperties" version="1.6">
+      <keepAliveConnection>false</keepAliveConnection>
       <MultiValue className="webtool.data.MultiValue" version="1.5">
        <RelativeLocationTestValue className="webtool.data.RelativeLocationTestValue" version="1.1">
        </RelativeLocationTestValue>
@@ -1123,6 +1126,21 @@
     </NameValuePair>
     <mode>1</mode>
     <timeout>30</timeout>
+    <fileResponderCacheUUID spDataVersion="10.6.2">7c6a44a2-b3ee-4058-8f64-3d913a323378</fileResponderCacheUUID>
+    <fileResponderExcludes spDataVersion="10.6.2">true</fileResponderExcludes>
+    <NameValueProperties className="webtool.data.NameValueProperties" version="1.4">
+     <propertiesSize spDataVersion="10.6.2">1</propertiesSize>
+     <StringNameValuePair className="webtool.data.StringNameValuePair" version="3.1.3">
+      <name spDataVersion="10.6.2">*</name>
+      <MultiValue className="webtool.data.MultiValue" version="1.5">
+       <StringTestValue className="webtool.data.StringTestValue" version="4.1">
+        <value spDataVersion="10.6.2">[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]{1,3})?(([+-][0-9]{2}:[0-9]{2})|Z)?</value>
+       </StringTestValue>
+       <ParameterizedTestValue className="webtool.data.ParameterizedTestValue" version="3.1">
+       </ParameterizedTestValue>
+      </MultiValue>
+     </StringNameValuePair>
+    </NameValueProperties>
     <AssignableResponseMessageSet className="webtool.soap.client.AssignableResponseMessageSet" version="1.1">
     </AssignableResponseMessageSet>
     <LocationObject className="webtool.wsdl.LocationObject" version="2">
@@ -1214,7 +1232,8 @@
      <xmlBuilder>true</xmlBuilder>
      <XMLBuilder className="webtool.xml.builder.XMLBuilder" version="6.6">
       <rootNodeExists>true</rootNodeExists>
-      <XMLElementNode className="webtool.xml.builder.XMLElementNode" version="1.3.6">
+      <XMLElementNode className="webtool.xml.builder.XMLElementNode" version="1.4.6">
+       <xmlEncoding>2</xmlEncoding>
        <value></value>
        <name>Envelope</name>
        <namespace>true</namespace>
@@ -1233,20 +1252,23 @@
         <prefix>xsi</prefix>
         <uri>http://www.w3.org/2001/XMLSchema-instance</uri>
        </XMLNamespaceNode>
-       <XMLElementNode className="webtool.xml.builder.XMLElementNode" version="1.3.6">
+       <XMLElementNode className="webtool.xml.builder.XMLElementNode" version="1.4.6">
+        <xmlEncoding>2</xmlEncoding>
         <value></value>
         <name>Body</name>
         <namespace>true</namespace>
         <prefix>SOAP-ENV</prefix>
         <uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
         <childNodesSize>1</childNodesSize>
-        <XMLElementNode className="webtool.xml.builder.XMLElementNode" version="1.3.6">
+        <XMLElementNode className="webtool.xml.builder.XMLElementNode" version="1.4.6">
+         <xmlEncoding>2</xmlEncoding>
          <value></value>
          <name>Placeholder</name>
          <childNodesSize>2</childNodesSize>
          <XMLNamespaceNode className="webtool.xml.builder.XMLNamespaceNode" version="1.1.6">
          </XMLNamespaceNode>
-         <XMLAttributeNode className="webtool.xml.builder.XMLAttributeNode" version="1.3.6">
+         <XMLAttributeNode className="webtool.xml.builder.XMLAttributeNode" version="1.4.6">
+          <xmlEncoding>2</xmlEncoding>
           <value>http://schemas.xmlsoap.org/soap/encoding/</value>
           <name>encodingStyle</name>
           <namespace>true</namespace>
@@ -1296,12 +1318,12 @@
              <hash>8</hash>
              <name>type</name>
              <fixed>string</fixed>
-             <StringType className="webtool.soap.StringType" version="2.5.3">
-              <hash>9</hash>
+             <StringType className="webtool.soap.StringType" version="2">
+              <hash>4</hash>
              </StringType>
             </AttributeType>
             <content>true</content>
-            <StringType className="webtool.soap.StringType" version="2">
+            <StringType className="webtool.soap.StringType" version="2.5.3">
              <hash>9</hash>
             </StringType>
             <namespace>urn:parasoft:json</namespace>
@@ -1338,7 +1360,7 @@
              </AttributeValue>
              <contentValue>true</contentValue>
              <StringValue className="webtool.soap.StringValue" version="1.9.1.13">
-              <value>HelloWorld</value>
+              <value>HelloGrigori!</value>
              </StringValue>
             </ComplexValue>
            </ElementValue>
@@ -1396,7 +1418,7 @@
     </CorrelationConditionSet>
     <LocationObject className="webtool.wsdl.LocationObject" version="2">
     </LocationObject>
-    <ClientTesterServiceOptions className="webtool.soap.client.ClientTesterServiceOptions" version="1.23">
+    <ClientTesterServiceOptions className="webtool.soap.client.ClientTesterServiceOptions" version="1.24">
      <ApplyableBooleanConfiguration className="com.parasoft.gui.ApplyableBooleanConfiguration" version="1.2.2">
      </ApplyableBooleanConfiguration>
      <ClientTesterEncodingOptions className="webtool.soap.client.ClientTesterEncodingOptions" version="1.1">
@@ -1674,7 +1696,8 @@
      <ApplyableBooleanConfiguration className="com.parasoft.gui.ApplyableBooleanConfiguration" version="1.2.2">
       <bool>true</bool>
      </ApplyableBooleanConfiguration>
-     <ClientTesterReturnStatusOptions className="webtool.soap.client.ClientTesterReturnStatusOptions" version="1.1">
+     <ClientTesterReturnStatusOptions className="webtool.soap.client.ClientTesterReturnStatusOptions" version="1.2">
+      <skipProxyFailover spDataVersion="10.6.2">false</skipProxyFailover>
       <NameValuePair className="webtool.data.NameValuePair" version="3.3">
        <MultiValue className="webtool.data.MultiValue" version="1.5">
         <StringTestValue className="webtool.data.StringTestValue" version="4.1">
