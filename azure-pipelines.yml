@@ -118,9 +118,11 @@ steps:
   displayName: 'Test Virtual Assets'
 
 - publish: /home/vsts/work/1/s/temp
+  artifact: report
+
+- publish: /home/vsts/work/1/s/temp
   artifact: TSA
 - script: |
-
     # Release
     echo -e "\nPush assets to PROD.\n"
     echo Placeholder
