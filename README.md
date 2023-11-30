@@ -1,4 +1,4 @@
-# Parabank PVA Ephemral Deployment
+# Parabank PVA Ephemeral Deployment
 
 ## Description
 The following example demonstrates a job that creates an ephemeral Docker container in Azure uploads/deploys/replaces a PVA on the server and runs a health check step against it to validate it.
