@@ -72,7 +72,7 @@ steps:
     
     # Test PVA
     echo -e "\nTesting Virtual Assets.\n"
-    curl -iv --raw http://soavirt-server:9080/parabank/services/bank/accounts/13344 -o test.log
+    curl -iv --raw http://localhost:9080/parabank/services/bank/accounts/13344 -o test.log
     cat test.log
     echo "Starting Pipeline Execution."
     echo "Create ./temp directory for volume mount."
