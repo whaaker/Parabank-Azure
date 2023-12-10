@@ -102,7 +102,7 @@ steps:
     -u 0:0 \
     -e ACCEPT_EULA=true \
     -v "$(pwd)/temp:/temp" \
-     --network=demo-net \
+    --network=demo-net \
     parasoft/soavirt /bin/bash -c " \
     cat /temp/soatestcli.properties; \
     soatestcli \
