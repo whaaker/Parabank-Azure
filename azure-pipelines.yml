@@ -120,13 +120,12 @@ steps:
 - publish: /home/vsts/work/1/s/temp
   artifact: report
 
-# Publish Test Results
-- task: PublishParasoftTestResults@1
-
-  displayName: Publish SOAtest Test Results
+- task: PublishParasoftResults@1
   inputs:
-    testRunner: 'SOAtest9x'
-    testResultsFiles: '$(Build.Repository.LocalPath)/temp/rep*.xml'
+    resultsFiles: |
+      **/rep*.xml
+      **/rep*.sarif
+      **/coverage.xml
 - publish: /home/vsts/work/1/s/temp
   artifact: TSA
 - script: |
