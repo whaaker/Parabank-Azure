@@ -58,7 +58,7 @@ steps:
       -H "accept: application/json" \
       -H "Content-Type: multipart/form-data" \
       -F "file=@${file}" \
-      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=true&replace=true" \
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=false&replace=true" \
       -o upload.log
 
       echo -e "\nDebug.\n"
@@ -120,6 +120,13 @@ steps:
 - publish: /home/vsts/work/1/s/temp
   artifact: report
 
+# Publish Test Results
+- task: PublishParasoftTestResults@1
+
+  displayName: Publish SOAtest Test Results
+  inputs:
+    testRunner: 'SOAtest9x'
+    testResultsFiles: '$(Build.Repository.LocalPath)/temp/rep*.xml'
 - publish: /home/vsts/work/1/s/temp
   artifact: TSA
 - script: |
