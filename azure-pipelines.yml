@@ -126,8 +126,8 @@ steps:
       **/rep*.xml
       **/rep*.sarif
       **/coverage.xml
-- publish: /home/vsts/work/1/s/temp
-  artifact: TSA
+    testRunTitle: 'Functional Tests'
+
 - script: |
     # Release
     echo -e "\nPush assets to PROD.\n"
