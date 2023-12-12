@@ -118,7 +118,15 @@ steps:
   displayName: 'Test Virtual Assets'
 
 - publish: /home/vsts/work/1/s/temp
-  artifact: TSA
+  artifact: report
+
+- task: PublishParasoftResults@1
+  inputs:
+    resultsFiles: |
+      **/rep*.xml
+      **/rep*.sarif
+      **/coverage.xml
+    testRunTitle: 'Functional Tests'
 - script: |
 
     # Release
