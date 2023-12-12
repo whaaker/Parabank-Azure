@@ -119,6 +119,13 @@ steps:
 
 - publish: /home/vsts/work/1/s/temp
   artifact: TSA
+- task: PublishParasoftResults@1
+  inputs:
+    resultsFiles: |
+      **/rep*.xml
+      **/rep*.sarif
+      **/coverage.xml
+    testRunTitle: 'Functional Tests'
 - script: |
 
     # Release
