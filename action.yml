@@ -1,0 +1,21 @@
+name: Run SOAtestCLI on Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main  
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted  
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # This action checks out your repository's code
+
+      - name: Run SOAtestCLI on Self-Hosted Runner
+        run: |
+          soatestcli -data D:\Jenkins_Integrations -resource /TestAssets/ -config user://Example Configuration -settings D:\Jenkins_Integrations\localsettings.properties
