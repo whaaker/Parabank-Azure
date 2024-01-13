@@ -1,0 +1,136 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: |
+    
+    # Set up
+    echo -e "\nSetting Up.\n"
+    mkdir tmp
+    echo ${PWD}
+    ls -R ${PWD}
+
+    docker network create demo-net
+    # Deloy Docker Virt Server
+    echo -e "\nDeploying Parasoft SOAVirt Server.\n"
+    docker run -d \
+    -p 9080:9080 \
+    -e ACCEPT_EULA=true \
+    --network=demo-net \
+    --name soavirt-server parasoft/soavirt-server
+    
+    # Wait for Server to stand up
+    sleep 15s
+    
+    # Apply License
+    echo -e "\nApplying License.\n"
+    curl -X PUT "http://localhost:9080/soavirt/api/v6/preferences/config" \
+    -u admin:admin \
+    -H "accept: application/log" \
+    -H "Content-Type: application/log" \
+    -d "{\"license\":{\"licenseServer\":{\"host\":\"$(license.server.host)\",\"port\":$(license.server.port),\"useSpecifiedServer\":true,\"connectionType\":\"https\",\"authEnabled\":true,\"username\":\"$(license.server.username)\",\"password\":\"$(license.server.password)\"},\"virtualize\":{\"enabled\":true,\"useNetwork\":true,\"network\":{\"edition\":\"performance_server_edition\"}}}}"
+
+    # Healthcheck Parasoft SOAVirt Server
+    echo -e "\nPing SOAVirt.\n"
+    curl -u admin:admin http://localhost:9080/soavirt/api/v6/status -o tmp/server-hc.log
+    ls -R
+    cat tmp/server-hc.log
+  displayName: 'Deploy SOAVirt Server'
+
+- script: |
+
+    # Upload Files
+    echo -e "\nUploading Files.\n"
+    cd virt
+    for file in *
+    do
+      echo ${file}
+      curl -iv --raw \
+      -u admin:admin \
+      -H "accept: application/json" \
+      -H "Content-Type: multipart/form-data" \
+      -F "file=@${file}" \
+      "http://localhost:9080/soavirt/api/v6/files/upload?id=%2FVirtualAssets%2F${file}&deploy=false&replace=true" \
+      -o upload.log
+
+      echo -e "\nDebug.\n"
+      cat upload.log
+      sleep 5s
+      echo -e "\nDone."
+    done
+  displayName: 'Deploy Virtual Assets'
+
+- script: |
+    
+    # Test PVA
+    echo -e "\nTesting Virtual Assets.\n"
+    curl -iv --raw http://localhost:9080/parabank/services/bank/accounts/13344 -o test.log
+    cat test.log
+    echo "Starting Pipeline Execution."
+    echo "Create ./temp directory for volume mount."
+    mkdir temp
+    echo ${PWD}
+    echo "Copy SOAtest project contents to volume directory."
+    cp -R $(soatest.project) temp/.
+    ls 
+    # Set Up and write .properties file
+    echo  -e "\n~~~\nSetting up and creating soatestcli.properties file.\n"
+    echo $"
+    license.network.auth.enabled=true  
+    license.network.password=$(license.server.password)
+    license.network.url=$(license.server.url)
+    license.network.use.specified.server=true
+    license.network.user=$(license.server.username)
+    soatest.license.network.edition=custom_edition
+    soatest.license.custom_edition_features=RuleWizard, Command Line, SOA, Web, Server API Enabled, Message Packs, Advanced Test Generation Desktop, Requirements Traceability, API Security Testing
+    soatest.license.use_network=true
+    virtualize.license.network.edition=performance_server_edition
+    virtualize.license.use_network=true" >> temp/soatestcli.properties
+    echo -e "\nDebug -- Verify workspace contents.\n"
+    ls -R
+    echo -e "\nDebug -- Verify soatestcli.properties file contents."
+    cat temp/soatestcli.properties
+    docker run -i \
+    -u 0:0 \
+    -e ACCEPT_EULA=true \
+    -v "$(pwd)/temp:/temp" \
+    --network=demo-net \
+    parasoft/soavirt /bin/bash -c " \
+    cat /temp/soatestcli.properties; \
+    soatestcli \
+    -settings /temp/soatestcli.properties \
+    -import /temp/$(soatest.project); \
+    ls
+    soatestcli \
+    -resource / \
+    -config 'user://Example Configuration' \
+    -settings /temp/soatestcli.properties \
+    -report /temp"
+    echo -e "\nDone."
+  displayName: 'Test Virtual Assets'
+
+- publish: /home/vsts/work/1/s/temp
+  artifact: report
+
+- task: PublishParasoftResults@1
+  inputs:
+    resultsFiles: |
+      **/rep*.xml
+      **/rep*.sarif
+      **/coverage.xml
+    testRunTitle: 'Functional Tests'
+
+- script: |
+    # Release
+    echo -e "\nPush assets to PROD.\n"
+    echo Placeholder
+    echo -e "\nDone."
+  displayName: 'Push to PROD'
